@@ -54,18 +54,23 @@ const ClockManager = (() => {
     // Get greeting based on time of day
     function getGreeting(hour) {
         if (hour < 12) {
-            return 'Good morning';
+            return 'Good Morning';
         } else if (hour < 18) {
-            return 'Good afternoon';
+            return 'Good Afternoon';
         } else {
-            return 'Good evening';
+            return 'Good Evening';
         }
     }
 
     // Get formatted date
     function getDate() {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date().toLocaleDateString(undefined, options);
+        const now = new Date();
+        const day = now.getDate();
+        const weekday = now.toLocaleDateString(undefined, { weekday: 'short' });
+        const month = now.toLocaleDateString(undefined, { month: 'short' });
+        const year = now.getFullYear();
+        
+        return `${weekday}, ${day} ${month} ${year}`;
     }
 
     // Update time and date
