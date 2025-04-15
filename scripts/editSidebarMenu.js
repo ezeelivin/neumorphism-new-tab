@@ -6,21 +6,32 @@ const EditSidebarManager = {
         // Get edit sidebar
         const editSidebar = document.querySelector('.editSidebar');
         
-        // Add click event to edit button
-        editBtn.addEventListener('click', () => {
-            // Toggle the editActive class on the editSidebar
-            editSidebar.classList.toggle('editActive');
-            // Add backdrop when sidebar is active
-            document.body.classList.toggle('editActive', editSidebar.classList.contains('editActive'));
-        });
+        console.log("EditSidebarManager init: editBtn =", editBtn);
+        console.log("EditSidebarManager init: editSidebar =", editSidebar);
+        
+        if (editBtn) {
+            // Add click event to edit button
+            editBtn.addEventListener('click', () => {
+                console.log("Edit button clicked");
+                // Toggle the editActive class on the editSidebar
+                editSidebar.classList.toggle('editActive');
+                // Add backdrop when sidebar is active
+                document.body.classList.toggle('editActive', editSidebar.classList.contains('editActive'));
+            });
+        } else {
+            console.error("Edit button not found in DOM");
+        }
 
         // Close sidebar when clicking backdrop
-        document.querySelector('.backdrop').addEventListener('click', () => {
-            if (document.body.classList.contains('editActive')) {
-                editSidebar.classList.remove('editActive');
-                document.body.classList.remove('editActive');
-            }
-        });
+        const backdrop = document.querySelector('.backdrop');
+        if (backdrop) {
+            backdrop.addEventListener('click', () => {
+                if (document.body.classList.contains('editActive')) {
+                    editSidebar.classList.remove('editActive');
+                    document.body.classList.remove('editActive');
+                }
+            });
+        }
 
         // Load saved toggle states from localStorage
         this.loadToggleStates();
@@ -85,5 +96,12 @@ const EditSidebarManager = {
 
 // Initialize EditSidebarManager when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded - initializing EditSidebarManager");
     EditSidebarManager.init();
 });
+
+// Fallback in case DOMContentLoaded has already fired
+if (document.readyState === "complete" || document.readyState === "interactive") {
+    console.log("Document already loaded - initializing EditSidebarManager now");
+    setTimeout(() => EditSidebarManager.init(), 1);
+}

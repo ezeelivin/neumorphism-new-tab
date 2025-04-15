@@ -3,6 +3,25 @@ const ShortcutsManager = (() => {
     // Private variables
     let shortcuts = [];
     const defaultFaviconUrl = 'https://www.google.com/s2/favicons?domain=';
+    
+    // Default shortcuts
+    const defaultShortcuts = [
+        {
+            name: 'YouTube',
+            url: 'https://www.youtube.com',
+            icon: 'https://www.google.com/s2/favicons?domain=youtube.com&sz=32'
+        },
+        {
+            name: 'GitHub',
+            url: 'https://github.com',
+            icon: 'https://www.google.com/s2/favicons?domain=github.com&sz=32'
+        },
+        {
+            name: 'X',
+            url: 'https://x.com',
+            icon: 'https://www.google.com/s2/favicons?domain=x.com&sz=32'
+        }
+    ];
 
     // DOM Elements
     let shortcutsContainer;
@@ -28,13 +47,8 @@ const ShortcutsManager = (() => {
         shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
 
         // If no shortcuts in localStorage, initialize with default shortcuts
-        if (shortcuts.length === 0 && shortcutsContainer) {
-            const defaultShortcuts = Array.from(shortcutsContainer.querySelectorAll('.btn:not(.edit-shortcuts-btn)')).map(btn => ({
-                name: btn.dataset.name,
-                url: btn.href,
-                icon: btn.querySelector('img').src
-            }));
-            shortcuts = defaultShortcuts;
+        if (shortcuts.length === 0) {
+            shortcuts = [...defaultShortcuts];
             _saveShortcuts();
         }
     }
