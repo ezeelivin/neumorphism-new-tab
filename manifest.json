@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "Neumorphism NewTab",
+    "version": "1.0",
+    "version_name": "1.0.0",
+    "description": "A beautiful new tab page with neumorphic design, featuring customizable shortcuts, clock, bookmarks, and more",
+    "author": "Rohit Yadav",
+    "permissions": [
+        "bookmarks",
+        "storage"
+    ],
+    
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "web_accessible_resources": [{
+        "resources": [
+            "icons/*",
+            "favicon.ico"
+        ],
+        "matches": ["<all_urls>"]
+    }],
+    "minimum_chrome_version": "88",
+    
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png"
+        },
+        "default_title": "Neumorphism NewTab"
+    },
+    "homepage_url": "https://github.com/rohitnirban/neumorphism-new-tab"
+}

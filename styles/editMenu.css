@@ -1,0 +1,79 @@
+/* Edit Menu Styles */
+.add-shortcut-form {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow-inset);
+    position: relative;
+    z-index: 2;
+}
+
+.add-shortcut-form form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.add-shortcut-form input,
+.add-shortcut-form select {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow-inset);
+    color: var(--text-color);
+    flex: 1;
+    min-width: 200px;
+    font-size: 14px;
+}
+
+.add-shortcut-form input:focus,
+.add-shortcut-form select:focus {
+    outline: none;
+    box-shadow: var(--neumorphic-shadow);
+}
+
+.add-shortcut-form button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent-color, #4285f4);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    min-width: 100px;
+    font-weight: 500;
+}
+
+.add-shortcut-form button:hover {
+    transform: translateY(-1px);
+}
+
+.add-shortcut-form button:active {
+    transform: translateY(0);
+}
+
+/* Add button styles */
+.add-shortcut-btn {
+    border: none;
+    background: var(--neumorphic-bg);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--neumorphic-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.add-shortcut-btn:hover {
+    box-shadow: var(--neumorphic-shadow-inset);
+}
+
+.add-shortcut-btn:focus {
+    outline: none;
+    box-shadow: var(--neumorphic-shadow-inset);
+}

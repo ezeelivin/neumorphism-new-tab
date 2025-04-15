@@ -1,0 +1,197 @@
+/* Shortcuts Container */
+.shortcuts-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow);
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.shortcuts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shortcuts-header h2 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.add-shortcut-btn {
+    border: none;
+    background: var(--neumorphic-bg);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--neumorphic-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.add-shortcut-btn:hover {
+    box-shadow: var(--neumorphic-shadow-inset);
+}
+
+/* Add Shortcut Form */
+.add-shortcut-form {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow-inset);
+    position: relative;
+    z-index: 2;
+}
+
+.add-shortcut-form form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.add-shortcut-form input,
+.add-shortcut-form select {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow-inset);
+    color: var(--text-color);
+    flex: 1;
+    min-width: 200px;
+}
+
+.add-shortcut-form button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent-color, #4285f4);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    min-width: 100px;
+    font-weight: 500;
+}
+
+.add-shortcut-form button:hover {
+    transform: translateY(-1px);
+}
+
+/* Shortcuts Grid */
+.shortcuts-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.section-header {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding-left: 15px;
+}
+
+.shortcuts-section,
+.ai-tools-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow-inset);
+}
+
+/* Shortcut Item */
+.shortcut-item {
+    position: relative;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.shortcut-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--neumorphic-shadow-hover);
+}
+
+.shortcut-link {
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.shortcut-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+}
+
+.shortcut-name {
+    font-size: 0.9em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.delete-shortcut {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.shortcut-item:hover .delete-shortcut {
+    opacity: 0.7;
+}
+
+.delete-shortcut:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme support */
+body.dark-theme .shortcuts-container {
+    background: var(--dark-bg);
+}
+
+body.dark-theme .shortcut-item {
+    background: var(--dark-bg);
+}
+
+body.dark-theme .add-shortcut-form input,
+body.dark-theme .add-shortcut-form select {
+    background: var(--dark-bg);
+}
+
+body.dark-theme .delete-shortcut:hover {
+    background: rgba(255, 255, 255, 0.1);
+}

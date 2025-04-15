@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f5f0">
+    <meta name="description" content="A beautiful neumorphic new tab page with customizable shortcuts, clock, custom texts, and todo list.">
+    <meta name="keywords" content="new tab, customizable, shortcuts, clock, todo list, neumorphic design">
+    <meta name="author" content="Rohit Yadav">
+    <title>New Tab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/editMenu.css">
+    <link rel="stylesheet" href="styles/bookmarks.css">
+    <link rel="stylesheet" href="styles/bookmarkEditMenu.css">
+    <link rel="stylesheet" href="styles/clock.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <script defer src="scripts/script.js"></script>
+    <script defer src="scripts/shortcuts.js"></script>
+    <script defer src="scripts/aiTools.js"></script>
+    <script defer src="scripts/editShortcutMenu.js"></script>
+    <script defer src="scripts/editSidebarMenu.js"></script>
+    <script defer src="scripts/clock.js"></script>
+    <script defer src="scripts/todo.js"></script>
+    <script defer src="scripts/googleApps.js"></script>
+    <script defer src="scripts/theme.js"></script>
+    <script defer src="scripts/customHeading.js"></script>
+    <script defer src="scripts/searchEngine.js"></script>
+    <script defer src="scripts/bookmarks.js"></script>
+</head>
+
+<body>
+    <div class="backdrop" aria-hidden="true"></div>
+    <main class="main">
+        <div class="content">
+            <div class="bookmark_button_container">
+                <button class="bookmark_button" aria-label="Bookmarks">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path
+                            d="M 6 2 C 5.861875 2 5.7278809 2.0143848 5.5976562 2.0410156 C 4.686084 2.2274316 4 3.033125 4 4 L 4 22 L 12 19 L 20 22 L 20 4 C 20 3.8625 19.985742 3.7275391 19.958984 3.5976562 C 19.799199 2.8163086 19.183691 2.2008008 18.402344 2.0410156 C 18.272119 2.0143848 18.138125 2 18 2 L 6 2 z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <section class="bookmark_container">
+                <header class="bookmark_header">
+                    <h1>Bookmarks</h1>
+                    <div class="view_toggle">
+                        <button class="view_btn active" id="listViewBtn" data-view="list" aria-label="List view">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
+                            </svg>
+                        </button>
+                        <button class="view_btn" id="gridViewBtn" data-view="grid" aria-label="Grid view">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z" />
+                            </svg>
+                        </button>
+                    </div>
+                </header>
+                <div>
+                    <ul class="bookmarks_list"></ul>
+                </div>
+            </section>
+
+            <aside class="editSidebar">
+                <header class="editSidebarHeading">
+                    <h1>Edit Menu</h1>
+                </header>
+
+                <div class="wrap__toggle shortcuts-toggle">
+                    <div class="wrap__toggle--text">
+                        <span>Shortcuts</span>
+                        <p class="wrap__toogle__desc">Show Saved Shortcuts</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="shortcutsToggle">
+                            <input type="checkbox" class="checkBox" id="shortcutsToggle" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle aiTools">
+                    <div class="wrap__toggle--text">
+                        <span>AI Tools</span>
+                        <p class="wrap__toogle__desc">Show AI Tools Shortcuts</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="aiToolsToggle">
+                            <input type="checkbox" class="checkBox" id="aiToolsToggle" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle googleApps">
+                    <div class="wrap__toggle--text">
+                        <span>Google Apps</span>
+                        <p class="wrap__toogle__desc">Show Google Apps Shortcuts</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="googleAppsToggle">
+                            <input type="checkbox" class="checkBox" id="googleAppsToggle">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle" data-feature="searchEngine">
+                    <div class="wrap__toggle--text">
+                        Search Engine
+                        <div class="wrap__toogle__desc">Enable search engine selection</div>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="searchEngineToggle">
+                            <input type="checkbox" id="searchEngineToggle" data-feature="searchEngine">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle customText">
+                    <div class="wrap__toggle--text">
+                        <span>Custom Text</span>
+                        <p class="wrap__toogle__desc">Show Custom Text Above Search</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="customTextToggle">
+                            <input type="checkbox" class="checkBox" id="customTextToggle" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle showDate">
+                    <div class="wrap__toggle--text">
+                        <span>Show Date</span>
+                        <p class="wrap__toogle__desc">Show/Hide Date Display</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="showDateToggle">
+                            <input type="checkbox" class="checkBox" id="showDateToggle" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle showGreeting">
+                    <div class="wrap__toggle--text">
+                        <span>Show Greeting</span>
+                        <p class="wrap__toogle__desc">Show/Hide Greeting Message</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="showGreetingToggle">
+                            <input type="checkbox" class="checkBox" id="showGreetingToggle" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle showTodo">
+                    <div class="wrap__toggle--text">
+                        <span>Show Todo List</span>
+                        <p class="wrap__toogle__desc">Show/Hide Todo List</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="showTodoToggle">
+                            <input type="checkbox" class="checkBox" id="showTodoToggle">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wrap__toggle darkTheme">
+                    <div class="wrap__toggle--text">
+                        <span>Dark Theme</span>
+                        <p class="wrap__toogle__desc">Enable Dark Theme</p>
+                    </div>
+                    <div class="wrap__toggle--toggler">
+                        <label for="darkThemeToggle">
+                            <input type="checkbox" class="checkBox" id="darkThemeToggle">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="top">
+                <div class="left">
+                    <div class="clock_container">
+                        <div class="analog clock" aria-label="Analog clock">
+                            <div class="container hour-container">
+                                <div class="pointer hour"></div>
+                            </div>
+                            <div class="container min-container">
+                                <div class="pointer min"></div>
+                            </div>
+                            <div class="container sec-container">
+                                <div class="pointer sec"></div>
+                            </div>
+                        </div>
+                        <div id="greeting" aria-live="polite">Good Morning!</div>
+                        <div id="clock-date" aria-live="polite">Thu, Jan 9</div>
+                    </div>
+
+                    <div class="todo-container">
+                        <header class="todo-header">
+                            <h2>Todo List</h2>
+                            <button class="add-todo-btn" aria-label="Add todo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </header>
+                        <ul class="todo-list" aria-label="Todo items"></ul>
+                        <div class="add-todo-form">
+                            <input type="text" class="todo-input" placeholder="Add a new task..."
+                                aria-label="New todo task">
+                            <button class="save-todo-btn">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="finder__container">
+                        <h1 class="custom-heading" contenteditable="true">Click here to edit</h1>
+                        <form autocomplete="off">
+                            <div class="finder">
+                                <div class="finder__outer">
+                                    <div class="finder__inner">
+                                        <div class="finder__icon" aria-hidden="true"></div>
+                                        <input class="finder__input" type="text" name="q" aria-label="Search the web" />
+                                        <div class="search-engine-dropdown">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="ai-tools-shortcuts" id="aiToolsShortcuts">
+                            <p class="btn edit-ai-tools-btn" id="editAiToolsBtn" aria-label="Edit AI tools">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom"></div>
+            </div>
+
+            <nav class="shortcuts" id="shortcuts">
+                <div class="btn edit-shortcuts-btn" id="editShortcutsBtn" aria-label="Edit shortcuts">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                    </svg>
+                </div>
+            </nav>
+
+            <!-- Modal dialogs -->
+            <dialog class="modal" id="editShortcutsModal">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h2>Edit Shortcuts</h2>
+                        <button class="close-modal" aria-label="Close">&times;</button>
+                    </header>
+                    <div class="shortcuts-list" id="shortcutsList"></div>
+                    <div class="add-shortcut">
+                        <h3>Add New Shortcut</h3>
+                        <div class="input-group">
+                            <input type="text" id="newShortcutName" placeholder="Name" aria-label="Shortcut name">
+                            <input type="text" id="newShortcutUrl" placeholder="URL" aria-label="Shortcut URL">
+                        </div>
+                        <button id="addShortcutBtn">Add Shortcut</button>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog class="modal" id="editAiToolsModal">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h2>Edit AI Tools</h2>
+                        <button class="close-modal" aria-label="Close">&times;</button>
+                    </header>
+                    <div class="ai-tools-list" id="aiToolsList"></div>
+                    <div class="add-ai-tool">
+                        <h3>Add New AI Tool</h3>
+                        <div class="input-group">
+                            <input type="text" id="newAiToolName" placeholder="Name" aria-label="AI tool name">
+                            <input type="text" id="newAiToolUrl" placeholder="URL" aria-label="AI tool URL">
+                        </div>
+                        <button id="addAiToolBtn">Add AI Tool</button>
+                    </div>
+                </div>
+            </dialog>
+
+            <div class="editBtn">
+                <button class="editBtn__btn" id="editBtn" aria-label="Edit settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="todoBtn">
+                <button class="todoBtn__btn" aria-label="Todo list">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM17.99 9l-1.41-1.42l-6.59 6.59l-2.58-2.57l-1.42 1.41l4 3.99z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="googleAppsBtn" id="googleAppsBtnContainer">
+                <button class="googleApps__btn" id="googleAppsBtn" aria-label="Google Apps">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
+                        </path>
+                    </svg>
+                </button>
+                <div class="google-apps-dropdown">
+                    <div class="google-apps-grid">
+
+                    </div>
+                </div>
+            </div>
+
+            <header class="shortcuts-header">
+                <h2>Shortcuts</h2>
+                <button id="add-shortcut-btn" class="add-shortcut-btn" aria-label="Add shortcut">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+            </header>
+            <form id="add-shortcut-form" class="add-shortcut-form" style="display: none;"
+                onclick="event.stopPropagation();">
+                <div id="shortcut-form" onsubmit="event.stopPropagation();">
+                    <input type="text" id="shortcut-name" placeholder="Name" required pattern=".{1,50}"
+                        title="Name should be between 1 and 50 characters" aria-label="Shortcut name">
+                    <input type="url" id="shortcut-url" placeholder="URL (e.g., https://example.com)" required
+                        pattern="https?://.+" title="URL must start with http:// or https://" aria-label="Shortcut URL">
+                    <select id="shortcut-category" required aria-label="Shortcut category">
+                        <option value="shortcuts">Regular Shortcut</option>
+                        <option value="ai">AI Tool</option>
+                    </select>
+                    <button type="submit" class="save-shortcut-btn">Add Shortcut</button>
+                </div>
+            </form>
+            <div class="shortcuts-grid">
+                <h3 class="section-header">Regular Shortcuts</h3>
+                <div id="shortcuts-section" class="shortcuts-section"></div>
+                <h3 class="section-header">AI Tools</h3>
+                <div id="ai-tools-section" class="ai-tools-section"></div>
+            </div>
+            </section> -->
+        </div>
+    </main>
+</body>
+
+</html>

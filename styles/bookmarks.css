@@ -1,0 +1,92 @@
+/* Bookmarks Container */
+.bookmarks-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow);
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.bookmarks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bookmarks-header h2 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* Bookmarks Grid */
+.bookmarks-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+/* Bookmark Item */
+.bookmark-item {
+    position: relative;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--neumorphic-bg);
+    box-shadow: var(--neumorphic-shadow);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.bookmark-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--neumorphic-shadow-hover);
+}
+
+.bookmark-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    gap: 8px;
+}
+
+.bookmark-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+}
+
+.bookmark-title {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.delete-bookmark {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--text-color);
+    border-radius: 50%;
+}
+
+.bookmark-item:hover .delete-bookmark {
+    opacity: 0.7;
+}
+
+.delete-bookmark:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.1);
+}
